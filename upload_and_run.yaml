@@ -2,36 +2,36 @@
   gather_facts: no
 
   vars:
-          docker_id: dhdudwn95
-          docker_key: vkduqpt95%
-          container_name: myweb
-          image_name: c1t1d0s7/goorm-myweb
+    docker_id: dhdudwn95
+    docker_key: vkduqpt95%
+    container_name: myweb
+    image_name: c1t1d0s7/goorm-myweb
 
   tasks:
   - block:
-          - name: Login to Docker Hub
-            docker_login:
-                    username: "{{ docker_id }}"
-                    password: "{{ docker_key }}"
-                    state: present
-          - name: Image Build with War
-            docker_image:
-                    build:
-                            path: .
-                            rm: yes
-                    name: "{{ image_name }}"
-                    push: yes
-          - name: Create/Start Container
-            docker_container:
-                    name: "{{ container_name }}"
-                    image: "{{ image_name }}"
-                    exposed_ports:
-                            - "8080:8080"
-                    pull: yes
-                    recreate: yes
-                    state: started
-          always:
-                  - name: Logout to Docker Hub
-                    docker_login:
-                            username: Logout to DockerHub
-                            state: absent
+    - name: Login to Docker Hub
+      docker_login:
+        username: "{{ docker_id }}"
+        password: "{{ docker_key }}"
+        state: present
+    - name: Image Build with War
+      docker_image:
+        build:
+          path: .
+          rm: yes
+        name: "{{ image_name }}"
+        push: yes
+    - name: Create/Start Container
+      docker_container:
+        name: "{{ container_name }}"
+        image: "{{ image_name }}"
+        exposed_ports:
+          - "8080:8080"
+        pull: yes
+        recreate: yes
+        state: started
+    always:
+    - name: Logout to Docker Hub
+      docker_login:
+        username: "{{ docker_id }}"
+        state: absent
