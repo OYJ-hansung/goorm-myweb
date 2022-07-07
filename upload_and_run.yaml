@@ -5,7 +5,7 @@
     docker_id: dhdudwn95
     docker_key: vkduqpt95%
     container_name: myweb
-    image_name: c1t1d0s7/goorm-myweb
+    image_name: dhdudwn95/goorm-myweb
 
   tasks:
   - block:
