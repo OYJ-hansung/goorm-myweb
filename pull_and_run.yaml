@@ -1,4 +1,4 @@
-- hosts: docker
+- hosts: 192.168.57.12
   gather_facts: no
 
   vars:
