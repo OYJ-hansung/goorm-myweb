@@ -3,7 +3,7 @@
 
   vars:
     docker_id: dhdudwn95
-    docker_key: vkduqpt95%
+    docker_key: "{{ lookup('env', 'DOCKER_KEY') }}"
     container_name: myweb
     image_name: "{{ docker_id }}/goorm-myweb"
 
