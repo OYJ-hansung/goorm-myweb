@@ -2,10 +2,10 @@
   gather_facts: no
 
   vars:
-    docker_id: dhdudwn95
+    docker_id: c1t1d0s7
     docker_key: "{{ lookup('env', 'DOCKER_KEY') }}"
-    container_name: myweb
-    image_name: "{{ docker_id }}/goorm-myweb"
+    image_tag: "{{ lookup('env', 'BUILD_NUMBER') }}"
+    image_name: "{{ docker_id }}/goorm-myweb:{{ image_tag }}"
 
   tasks:
   - block:
@@ -14,14 +14,14 @@
         username: "{{ docker_id }}"
         password: "{{ docker_key }}"
         state: present
-    - name: Image Build with War
+    - name: Image Build with WAR
       docker_image:
-        source: build
         build:
           path: .
           rm: yes
         name: "{{ image_name }}"
         push: yes
+        source: build
     always:
     - name: Logout to Docker Hub
       docker_login:
