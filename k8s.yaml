@@ -1,0 +1,16 @@
+- hosts: localhost
+  gather_facts: no
+
+  tasks:
+  - k8s:
+          state: present
+          definition:
+                  apiVersion: v1
+                  kind: Pod
+                  metadata:
+                          name: mypod
+                          namespace: default
+                  spec:
+                          containers:
+                          - name: mycon
+                            image: httpd
