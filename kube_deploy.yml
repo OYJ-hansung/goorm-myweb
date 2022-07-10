@@ -2,7 +2,7 @@
   gather_facts: no
 
   vars:
-    docker_id: c1t1d0s7
+    docker_id: dhdudwn95
     container_name: myweb
     image_tag: "{{ lookup('env', 'BUILD_NUMBER') }}"
     image_name: "{{ docker_id }}/goorm-myweb:{{ image_tag }}"
